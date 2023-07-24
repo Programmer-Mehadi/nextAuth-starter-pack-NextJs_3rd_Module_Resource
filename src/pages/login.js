@@ -12,7 +12,12 @@ const LoginPage = () => {
       <div className={styles.form}>
         <h3>LOGIN</h3>
         <div className={styles.social_icons}>
-          <GoogleOutlined />
+          <GoogleOutlined onClick={() => {
+            signIn("google", {
+              callbackUrl: '/'
+            });
+
+          }} />
           <GithubOutlined onClick={() => {
             signIn("github", {
               callbackUrl: '/'
