@@ -4,13 +4,22 @@ import Head from "next/head";
 import styles from "@/styles/Login.module.css";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import auth from "@/firebase/firebase.auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+
 const LoginPage = () => {
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    createUserWithEmailAndPassword(data.email, data.password);
   }
-
+ 
   return (
     <div>
       <Head>
@@ -25,13 +34,11 @@ const LoginPage = () => {
             signIn("google", {
               callbackUrl: '/'
             });
-
           }} />
           <GithubOutlined onClick={() => {
             signIn("github", {
               callbackUrl: '/'
             });
-
           }} />
         </div>
         <hr />
