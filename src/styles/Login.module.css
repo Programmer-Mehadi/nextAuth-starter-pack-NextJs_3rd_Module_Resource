@@ -1,11 +1,10 @@
 .form{
     width: 30%;
-    height: 350px;
+    min-height: 350px;
     border-radius: 10px;
     background: #090928;
     margin: 8% auto;
     padding: 20px;
-    text-align: center;
     color: white
 }
 
